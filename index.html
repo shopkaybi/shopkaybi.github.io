@@ -3,161 +3,316 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Shop Kay Bi</title>
+<title>SHOP FULL FIXED</title>
 
 <style>
-body{
-margin:0;
-background:#f4f4f4;
-font-family:Arial;
-}
+body{margin:0;font-family:Arial;background:#f5f5f5}
+.header{background:#fff;padding:14px;text-align:center;font-weight:bold;color:#ee4d2d;position:sticky;top:0}
 
-.header{
-background:#fff;
-padding:15px;
-text-align:center;
-font-size:30px;
-font-weight:bold;
-color:#ff2b55;
-box-shadow:0 0 10px rgba(0,0,0,.1);
-}
+/* MENU */
+.menuBtn{position:fixed;top:10px;left:10px;font-size:28px;cursor:pointer;color:#ee4d2d}
+.menu{position:fixed;top:0;left:-240px;width:220px;height:100%;background:#111;color:white;padding:20px;transition:.3s}
+.menu button{width:100%;margin-top:10px;padding:10px;background:#ee4d2d;color:white;border:none}
 
-.notice{
-background:#fff;
-max-width:1200px;
-margin:15px auto;
-padding:15px;
-border:2px solid #ff2b55;
-border-radius:10px;
-}
+/* SEARCH */
+.search{display:flex;padding:10px;background:#fff}
+.search input{flex:1;padding:10px;border-radius:20px;border:1px solid #ddd}
 
-.search{
-max-width:1200px;
-margin:auto;
-padding:10px;
-display:flex;
-gap:10px;
-}
+/* SHOP */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
+.card{background:#fff;border-radius:10px;overflow:hidden}
+.card img{width:100%;height:130px;object-fit:cover}
+.info{padding:10px}
+.buy{background:#ee4d2d;color:white;padding:8px;text-align:center;margin-top:8px;border-radius:6px;cursor:pointer}
 
-.search input{
-flex:1;
-padding:12px;
-border:1px solid #ccc;
-border-radius:8px;
-}
+/* ORDER */
+.order{background:#fff;margin:10px;padding:10px;border-radius:10px}
 
-.search button{
-padding:12px 20px;
-background:#ff2b55;
-color:white;
-border:none;
-border-radius:8px;
-}
+/* LOGIN */
+#login{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center}
+.box{width:260px}
+.box input{width:100%;padding:10px;margin:5px 0}
+.box button{width:100%;padding:10px;background:#ee4d2d;color:white;border:none}
 
-.products{
-max-width:1200px;
-margin:auto;
-padding:15px;
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-gap:15px;
-}
+/* SUPPORT */
+#support{position:fixed;right:15px;bottom:15px;width:55px;height:55px;background:#ee4d2d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:22px;cursor:pointer}
 
-.card{
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 0 10px rgba(0,0,0,.1);
-}
-
-.code{
-background:#ff2b55;
-color:white;
-padding:5px;
-font-weight:bold;
-text-align:center;
-}
-
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
-
-.info{
-padding:10px;
-}
-
-.price{
-font-size:22px;
-font-weight:bold;
-color:#e60023;
-margin:10px 0;
-}
-
-.btn{
-display:block;
-text-align:center;
-background:#ff2b55;
-color:white;
-padding:10px;
-text-decoration:none;
-border-radius:8px;
-}
+.acc{background:#111;color:white;padding:10px;border-radius:8px;margin-top:6px}
+.acc img{width:100%;margin-top:5px;border-radius:8px}
 </style>
 </head>
 
 <body>
 
-<div class="header">
-KAY BI SHOP
+<div class="header">SHOP FULL FIXED SYSTEM</div>
+<div class="menuBtn" onclick="toggle()">☰</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+<h3>MENU</h3>
+<button onclick="show('shop')">Shop</button>
+<button onclick="show('orders')">Đơn</button>
+<button id="adminBtn" onclick="adminPanel()" style="display:none">Admin</button>
+<button onclick="addAcc()">Up ACC</button>
 </div>
 
-<div class="notice">
-Tất cả acc được kiểm tra trước khi bán. Liên hệ Facebook để mua.
+<!-- LOGIN -->
+<div id="login">
+<div class="box">
+<input id="u" placeholder="User">
+<input id="p" type="password" placeholder="Pass">
+<button onclick="reg()">Register</button>
+<button onclick="login()">Login</button>
+</div>
 </div>
 
+<!-- SEARCH -->
 <div class="search">
-<input type="text" placeholder="Tìm mã acc...">
-<button>Tìm kiếm</button>
+<input id="s" onkeyup="render()" placeholder="Search SP / mã đơn">
 </div>
 
-<div class="products">
+<!-- SHOP -->
+<div id="shop" class="grid"></div>
 
+<!-- ORDERS -->
+<div id="orders" style="display:none"></div>
+
+<div id="support">💬</div>
+
+<script>
+
+const ADMIN_USER="admin";
+const ADMIN_PASS="bao123321";
+const WEBHOOK="https://discord.com/api/webhooks/1515016106350346301/p909oHcfJAtsaa_b2eWjaemYPSn_kWiQOdz6h5O5JQamM3AqNHYYGrIbY9rTHeCuVgpw";
+
+let users=JSON.parse(localStorage.getItem("users"))||[];
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+let accs=JSON.parse(localStorage.getItem("accs"))||[];
+let cur=localStorage.getItem("curUser")||null;
+
+/* DOM */
+const shop=document.getElementById("shop");
+const ordersDiv=document.getElementById("orders");
+const menu=document.getElementById("menu");
+const loginBox=document.getElementById("login");
+const adminBtn=document.getElementById("adminBtn");
+const searchInput=document.getElementById("s");
+
+/* PRODUCTS */
+let products=[
+{name:"Dragon",price:200000,img:"https://picsum.photos/300/200?1"},
+{name:"Kitsune",price:400000,img:"https://picsum.photos/300/200?2"},
+{name:"VIP",price:800000,img:"https://picsum.photos/300/200?3"}
+];
+
+/* INIT FIX FULL UI */
+window.onload=()=>{
+if(cur){
+loginBox.style.display="none";
+if(cur===ADMIN_USER) adminBtn.style.display="block";
+render();
+renderOrders();
+}
+};
+
+/* REGISTER */
+function reg(){
+let u=document.getElementById("u").value;
+let p=document.getElementById("p").value;
+if(!u||!p)return alert("Thiếu dữ liệu");
+
+users.push({u,p});
+localStorage.setItem("users",JSON.stringify(users));
+alert("OK");
+}
+
+/* LOGIN FIX */
+function login(){
+let u=document.getElementById("u").value;
+let p=document.getElementById("p").value;
+
+let ok=users.find(x=>x.u===u&&x.p===p);
+
+if(ok){
+cur=u;
+localStorage.setItem("curUser",cur);
+
+loginBox.style.display="none";
+if(cur===ADMIN_USER) adminBtn.style.display="block";
+
+render();
+renderOrders();
+}else alert("Sai tài khoản");
+}
+
+/* BUY FIX */
+function buy(name,price){
+
+if(!cur) return alert("Bạn chưa login");
+
+let id="OD"+Date.now();
+let type=prompt("BANK / CARD");
+let fee=type==="CARD"?price*0.19:0;
+
+let file=document.createElement("input");
+file.type="file";
+file.click();
+
+file.onchange=function(){
+let r=new FileReader();
+
+r.onload=function(e){
+
+let order={
+id,
+user:cur,
+name,
+price,
+type,
+fee,
+status:"chờ",
+acc:null,
+bill:e.target.result
+};
+
+orders.push(order);
+localStorage.setItem("orders",JSON.stringify(orders));
+
+fetch(WEBHOOK,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+content:`🛒 ORDER\nID:${id}\nUSER:${cur}\nITEM:${name}\nPRICE:${price}\nTYPE:${type}\nFEE:${fee}`
+,
+embeds:[{image:{url:e.target.result}}]
+})
+});
+
+renderOrders();
+}
+r.readAsDataURL(file);
+}
+}
+
+/* ADD ACC */
+function addAcc(){
+if(cur!==ADMIN_USER)return alert("No admin");
+
+let u=prompt("user");
+let p=prompt("pass");
+let note=prompt("note");
+
+let file=document.createElement("input");
+file.type="file";
+file.click();
+
+file.onchange=function(){
+let r=new FileReader();
+
+r.onload=function(e){
+accs.push({u,p,note,img:e.target.result});
+localStorage.setItem("accs",JSON.stringify(accs));
+alert("OK ACC");
+}
+r.readAsDataURL(file);
+}
+}
+
+/* ADMIN PANEL SAFE */
+function adminPanel(){
+if(cur!==ADMIN_USER)return;
+if(prompt("pass")!==ADMIN_PASS)return;
+
+let id=prompt("ID ORDER");
+
+let acc = accs.length ? accs.shift() : null;
+
+orders=orders.map(o=>{
+if(o.id===id){
+o.status="thành công";
+o.acc=acc;
+}
+return o;
+});
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+renderOrders();
+}
+
+/* SEARCH FIX (PRODUCT + ORDER ID) */
+function render(){
+
+let k=searchInput.value?.toLowerCase()||"";
+
+/* reset shop */
+shop.innerHTML="";
+
+/* FILTER PRODUCTS */
+products
+.filter(p=>p.name.toLowerCase().includes(k))
+.forEach(p=>{
+shop.innerHTML+=`
 <div class="card">
-<div class="code">MS: 001</div>
-<img src="https://picsum.photos/400/250?1">
+<img src="${p.img}">
 <div class="info">
-<div class="price">250.000đ</div>
-Dragon • Draco V4
-<br><br>
-<a class="btn" href="https://facebook.com">Chi Tiết</a>
+${p.name}<br>${p.price}
+<div class="buy" onclick="buy('${p.name}',${p.price})">Mua</div>
 </div>
-</div>
+</div>`;
+});
+}
 
-<div class="card">
-<div class="code">MS: 002</div>
-<img src="https://picsum.photos/400/250?2">
-<div class="info">
-<div class="price">500.000đ</div>
-Kitsune • CDK
-<br><br>
-<a class="btn" href="https://facebook.com">Chi Tiết</a>
-</div>
-</div>
+/* ORDERS FIX + SEARCH ID */
+function renderOrders(){
 
-<div class="card">
-<div class="code">MS: 003</div>
-<img src="https://picsum.photos/400/250?3">
-<div class="info">
-<div class="price">700.000đ</div>
-Dragon Full Gear
-<br><br>
-<a class="btn" href="https://facebook.com">Chi Tiết</a>
-</div>
-</div>
+if(!cur){
+ordersDiv.innerHTML="<h3 style='padding:10px'>Vui lòng đăng nhập</h3>";
+return;
+}
 
-</div>
+let k=searchInput.value?.toLowerCase()||"";
+
+ordersDiv.innerHTML="<h3 style='padding:10px'>📦 ĐƠN HÀNG</h3>";
+
+orders
+.filter(o=>o.user===cur)
+.filter(o=>o.id.toLowerCase().includes(k))
+.forEach(o=>{
+ordersDiv.innerHTML+=`
+<div class="order">
+<b>${o.id}</b><br>
+${o.name}<br>
+Trạng thái: ${o.status}
+
+${o.acc?`
+<div class="acc">
+<b>ACC:</b><br>
+${o.acc.u}<br>
+${o.acc.p}<br>
+${o.acc.note}
+<img src="${o.acc.img}">
+</div>`:""}
+</div>`;
+});
+}
+
+/* MENU */
+function toggle(){
+menu.style.left=(menu.style.left==="0px")?"-240px":"0px";
+}
+
+function show(x){
+shop.style.display=x==="shop"?"grid":"none";
+ordersDiv.style.display=x==="orders"?"block":"none";
+}
+
+/* SUPPORT */
+document.getElementById("support").onclick=()=>{
+window.open("https://m.me/your_fb","_blank");
+}
+
+</script>
 
 </body>
 </html>
