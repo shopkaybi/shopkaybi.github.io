@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop Kay Bi</title>
+
+<style>
+body{
+margin:0;
+background:#f4f4f4;
+font-family:Arial;
+}
+
+.header{
+background:#fff;
+padding:15px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#ff2b55;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+.notice{
+background:#fff;
+max-width:1200px;
+margin:15px auto;
+padding:15px;
+border:2px solid #ff2b55;
+border-radius:10px;
+}
+
+.search{
+max-width:1200px;
+margin:auto;
+padding:10px;
+display:flex;
+gap:10px;
+}
+
+.search input{
+flex:1;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.search button{
+padding:12px 20px;
+background:#ff2b55;
+color:white;
+border:none;
+border-radius:8px;
+}
+
+.products{
+max-width:1200px;
+margin:auto;
+padding:15px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+.code{
+background:#ff2b55;
+color:white;
+padding:5px;
+font-weight:bold;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.info{
+padding:10px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#e60023;
+margin:10px 0;
+}
+
+.btn{
+display:block;
+text-align:center;
+background:#ff2b55;
+color:white;
+padding:10px;
+text-decoration:none;
+border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+KAY BI SHOP
+</div>
+
+<div class="notice">
+Tất cả acc được kiểm tra trước khi bán. Liên hệ Facebook để mua.
+</div>
+
+<div class="search">
+<input type="text" placeholder="Tìm mã acc...">
+<button>Tìm kiếm</button>
+</div>
+
+<div class="products">
+
+<div class="card">
+<div class="code">MS: 001</div>
+<img src="https://picsum.photos/400/250?1">
+<div class="info">
+<div class="price">250.000đ</div>
+Dragon • Draco V4
+<br><br>
+<a class="btn" href="https://facebook.com">Chi Tiết</a>
+</div>
+</div>
+
+<div class="card">
+<div class="code">MS: 002</div>
+<img src="https://picsum.photos/400/250?2">
+<div class="info">
+<div class="price">500.000đ</div>
+Kitsune • CDK
+<br><br>
+<a class="btn" href="https://facebook.com">Chi Tiết</a>
+</div>
+</div>
+
+<div class="card">
+<div class="code">MS: 003</div>
+<img src="https://picsum.photos/400/250?3">
+<div class="info">
+<div class="price">700.000đ</div>
+Dragon Full Gear
+<br><br>
+<a class="btn" href="https://facebook.com">Chi Tiết</a>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
