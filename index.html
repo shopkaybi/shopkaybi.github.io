@@ -2,315 +2,425 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SHOP FULL FIXED</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRUMACC SHOP</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#f5f5f5}
-.header{background:#fff;padding:14px;text-align:center;font-weight:bold;color:#ee4d2d;position:sticky;top:0}
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ffd1dc,#ffffff);
+  color:#111;
+}
 
-/* MENU */
-.menuBtn{position:fixed;top:10px;left:10px;font-size:28px;cursor:pointer;color:#ee4d2d}
-.menu{position:fixed;top:0;left:-240px;width:220px;height:100%;background:#111;color:white;padding:20px;transition:.3s}
-.menu button{width:100%;margin-top:10px;padding:10px;background:#ee4d2d;color:white;border:none}
+/* HEADER */
+header{
+  text-align:center;
+  padding:15px;
+  font-size:22px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#ff69b4,#ffffff);
+}
+
+.fire{
+  background: linear-gradient(90deg,#ff0000,#ff7a00,#ffd000,#ff0000);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: fire 2s linear infinite;
+}
+
+@keyframes fire{
+  0%{background-position:0%}
+  100%{background-position:300%}
+}
+
+/* INTRO */
+.intro{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.intro-box{
+  width:85%;
+  max-width:340px;
+  background:linear-gradient(135deg,#ff69b4,#ffffff);
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+}
+
+.intro-box button{
+  margin-top:10px;
+  padding:10px 15px;
+  border:none;
+  border-radius:12px;
+  background:#111;
+  color:white;
+  font-weight:bold;
+}
+
+/* NOTICE */
+.notice{
+  background:#111;
+  color:#ff69b4;
+  font-weight:bold;
+  padding:8px;
+  text-align:center;
+  font-size:13px;
+}
+
+/* RUN */
+.run{
+  background:#111;
+  color:#ff69b4;
+  padding:6px;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+.run span{
+  display:inline-block;
+  padding-left:100%;
+  animation:run 8s linear infinite;
+}
+
+@keyframes run{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-100%)}
+}
 
 /* SEARCH */
-.search{display:flex;padding:10px;background:#fff}
-.search input{flex:1;padding:10px;border-radius:20px;border:1px solid #ddd}
+.searchBox{
+  text-align:center;
+  margin:10px;
+}
 
-/* SHOP */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
-.card{background:#fff;border-radius:10px;overflow:hidden}
-.card img{width:100%;height:130px;object-fit:cover}
-.info{padding:10px}
-.buy{background:#ee4d2d;color:white;padding:8px;text-align:center;margin-top:8px;border-radius:6px;cursor:pointer}
+.searchBox input{
+  width:90%;
+  max-width:400px;
+  padding:10px;
+  border-radius:10px;
+  border:2px solid #ff69b4;
+}
 
-/* ORDER */
-.order{background:#fff;margin:10px;padding:10px;border-radius:10px}
+/* GRID */
+.container{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  padding:10px;
+}
 
-/* LOGIN */
-#login{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center}
-.box{width:260px}
-.box input{width:100%;padding:10px;margin:5px 0}
-.box button{width:100%;padding:10px;background:#ee4d2d;color:white;border:none}
+/* CARD */
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 0 10px rgba(255,105,180,0.25);
+  position:relative;
+}
 
-/* SUPPORT */
-#support{position:fixed;right:15px;bottom:15px;width:55px;height:55px;background:#ee4d2d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:22px;cursor:pointer}
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
 
-.acc{background:#111;color:white;padding:10px;border-radius:8px;margin-top:6px}
-.acc img{width:100%;margin-top:5px;border-radius:8px}
+.tag{
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#ff69b4;
+  color:white;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:6px;
+}
+
+.info{
+  padding:10px;
+}
+
+.price{
+  color:#ff4da6;
+  font-weight:bold;
+}
+
+.note{
+  font-size:12px;
+  color:#666;
+}
+
+/* BUTTON */
+.btn{
+  display:flex;
+  gap:6px;
+  padding:10px;
+}
+
+.btn button{
+  flex:1;
+  border:none;
+  padding:10px;
+  border-radius:8px;
+}
+
+.detailBtn{background:#111;color:white;}
+.buyBtn{background:#ff69b4;color:white;}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.box{
+  width:320px;
+  background:white;
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+}
+
+.box img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* BUY */
+.buyPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.buyBox{
+  width:300px;
+  background:white;
+  border-radius:12px;
+  padding:15px;
+}
+
+.buyBox button{
+  width:100%;
+  margin:5px 0;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.fb{background:#1877f2;color:white;}
+.zl{background:#00c300;color:white;}
+
+/* PAGE */
+.page{
+  text-align:center;
+  margin:15px;
+}
+
+.page button{
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  background:#ff69b4;
+  color:white;
+  font-weight:bold;
+}
+
+/* FOOTER */
+.footer-note{
+  margin:20px;
+  padding:18px;
+  text-align:center;
+  background:linear-gradient(135deg,#ff69b4,#ffffff);
+  border-radius:15px;
+  font-weight:bold;
+  color:#111;
+  box-shadow:0 0 15px rgba(255,105,180,0.4);
+  line-height:1.5;
+  font-size:13px;
+}
+
+/* SNOW */
+.snow{
+  position:fixed;
+  top:-10px;
+  color:white;
+  animation:fall linear infinite;
+  pointer-events:none;
+}
+
+@keyframes fall{
+  to{transform:translateY(100vh)}
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">SHOP FULL FIXED SYSTEM</div>
-<div class="menuBtn" onclick="toggle()">☰</div>
-
-<!-- MENU -->
-<div class="menu" id="menu">
-<h3>MENU</h3>
-<button onclick="show('shop')">Shop</button>
-<button onclick="show('orders')">Đơn</button>
-<button id="adminBtn" onclick="adminPanel()" style="display:none">Admin</button>
-<button onclick="addAcc()">Up ACC</button>
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <div class="intro-box">
+    <h1>🔥 TRUMACC SHOP 🔥</h1>
+    <p>💗 Uy tín 100%</p>
+    <p>🛡 Admin có cọc</p>
+    <p>⚡ Giá rẻ - Giao dịch nhanh</p>
+    <button onclick="closeIntro()">🚀 VÀO SHOP</button>
+  </div>
 </div>
 
-<!-- LOGIN -->
-<div id="login">
-<div class="box">
-<input id="u" placeholder="User">
-<input id="p" type="password" placeholder="Pass">
-<button onclick="reg()">Register</button>
-<button onclick="login()">Login</button>
-</div>
+<header>
+  <div class="fire">🔥 TRUMACC SHOP 🔥</div>
+</header>
+
+<div class="run">
+  <span>💗 SHOP ACC ROBLOX - UY TÍN - GIÁ RẺ - ADMIN CÓ CỌC 💗</span>
 </div>
 
-<!-- SEARCH -->
-<div class="search">
-<input id="s" onkeyup="render()" placeholder="Search SP / mã đơn">
+<div class="notice">
+🔥 SHOP UY TÍN 100% - KHÔNG SCAM - GIAO DỊCH NHANH 🔥
 </div>
 
-<!-- SHOP -->
-<div id="shop" class="grid"></div>
+<div class="searchBox">
+  <input id="search" onkeyup="render()" placeholder="🔎 Tìm acc...">
+</div>
 
-<!-- ORDERS -->
-<div id="orders" style="display:none"></div>
+<div class="container" id="list"></div>
 
-<div id="support">💬</div>
+<div class="page">
+  <button onclick="prevPage()">⬅</button>
+  <span id="pageNum"></span>
+  <button onclick="nextPage()">➡</button>
+</div>
+
+<!-- DETAIL -->
+<div class="popup" id="popup" onclick="this.style.display='none'">
+  <div class="box" onclick="event.stopPropagation()">
+    <img id="pimg">
+    <h3 id="title"></h3>
+    <p id="price"></p>
+    <p id="code"></p>
+    <p id="note"></p>
+  </div>
+</div>
+
+<!-- BUY -->
+<div class="buyPopup" id="buyPopup" onclick="this.style.display='none'">
+  <div class="buyBox" onclick="event.stopPropagation()">
+    <h3>💬 Liên hệ mua acc</h3>
+
+    <button class="fb" onclick="window.open('https://www.facebook.com/share/17sCFrf2ZF/')">
+      Facebook
+    </button>
+
+    <button class="zl" onclick="window.open('https://zaloapp.com/qr/p/qvoo9gxy0f8o?src=qr')">
+      Zalo
+    </button>
+  </div>
+</div>
+
+<div class="footer-note">
+💗 SHOP ACC ROBLOX UY TÍN 100% 💗<br>
+⚡ Admin có cọc - không scam - giao dịch nhanh ⚡<br>
+🔥 Acc đúng mô tả - giá tốt nhất thị trường 🔥<br>
+📞 Zalo: 0984337170 | Facebook hỗ trợ 24/7<br>
+💎 Mua sớm giá tốt - số lượng có hạn 💎
+</div>
 
 <script>
 
-const ADMIN_USER="admin";
-const ADMIN_PASS="bao123321";
-const WEBHOOK="https://discord.com/api/webhooks/1515016106350346301/p909oHcfJAtsaa_b2eWjaemYPSn_kWiQOdz6h5O5JQamM3AqNHYYGrIbY9rTHeCuVgpw";
+function closeIntro(){
+  document.getElementById("intro").style.display="none";
+}
 
-let users=JSON.parse(localStorage.getItem("users"))||[];
-let orders=JSON.parse(localStorage.getItem("orders"))||[];
-let accs=JSON.parse(localStorage.getItem("accs"))||[];
-let cur=localStorage.getItem("curUser")||null;
+let page=1;
+let perPage=2;
 
-/* DOM */
-const shop=document.getElementById("shop");
-const ordersDiv=document.getElementById("orders");
-const menu=document.getElementById("menu");
-const loginBox=document.getElementById("login");
-const adminBtn=document.getElementById("adminBtn");
-const searchInput=document.getElementById("s");
-
-/* PRODUCTS */
-let products=[
-{name:"Dragon",price:200000,img:"https://picsum.photos/300/200?1"},
-{name:"Kitsune",price:400000,img:"https://picsum.photos/300/200?2"},
-{name:"VIP",price:800000,img:"https://picsum.photos/300/200?3"}
+const data = [
+  {code:"MS093", price:"60.000đ", note:( Acc Giao Mail Gốc) Mochi v2 đồ ngon đủ pvp , img:"https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg"}
+  
 ];
 
-/* INIT FIX FULL UI */
-window.onload=()=>{
-if(cur){
-loginBox.style.display="none";
-if(cur===ADMIN_USER) adminBtn.style.display="block";
-render();
-renderOrders();
-}
-};
-
-/* REGISTER */
-function reg(){
-let u=document.getElementById("u").value;
-let p=document.getElementById("p").value;
-if(!u||!p)return alert("Thiếu dữ liệu");
-
-users.push({u,p});
-localStorage.setItem("users",JSON.stringify(users));
-alert("OK");
-}
-
-/* LOGIN FIX */
-function login(){
-let u=document.getElementById("u").value;
-let p=document.getElementById("p").value;
-
-let ok=users.find(x=>x.u===u&&x.p===p);
-
-if(ok){
-cur=u;
-localStorage.setItem("curUser",cur);
-
-loginBox.style.display="none";
-if(cur===ADMIN_USER) adminBtn.style.display="block";
-
-render();
-renderOrders();
-}else alert("Sai tài khoản");
-}
-
-/* BUY FIX */
-function buy(name,price){
-
-if(!cur) return alert("Bạn chưa login");
-
-let id="OD"+Date.now();
-let type=prompt("BANK / CARD");
-let fee=type==="CARD"?price*0.19:0;
-
-let file=document.createElement("input");
-file.type="file";
-file.click();
-
-file.onchange=function(){
-let r=new FileReader();
-
-r.onload=function(e){
-
-let order={
-id,
-user:cur,
-name,
-price,
-type,
-fee,
-status:"chờ",
-acc:null,
-bill:e.target.result
-};
-
-orders.push(order);
-localStorage.setItem("orders",JSON.stringify(orders));
-
-fetch(WEBHOOK,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-content:`🛒 ORDER\nID:${id}\nUSER:${cur}\nITEM:${name}\nPRICE:${price}\nTYPE:${type}\nFEE:${fee}`
-,
-embeds:[{image:{url:e.target.result}}]
-})
-});
-
-renderOrders();
-}
-r.readAsDataURL(file);
-}
-}
-
-/* ADD ACC */
-function addAcc(){
-if(cur!==ADMIN_USER)return alert("No admin");
-
-let u=prompt("user");
-let p=prompt("pass");
-let note=prompt("note");
-
-let file=document.createElement("input");
-file.type="file";
-file.click();
-
-file.onchange=function(){
-let r=new FileReader();
-
-r.onload=function(e){
-accs.push({u,p,note,img:e.target.result});
-localStorage.setItem("accs",JSON.stringify(accs));
-alert("OK ACC");
-}
-r.readAsDataURL(file);
-}
-}
-
-/* ADMIN PANEL SAFE */
-function adminPanel(){
-if(cur!==ADMIN_USER)return;
-if(prompt("pass")!==ADMIN_PASS)return;
-
-let id=prompt("ID ORDER");
-
-let acc = accs.length ? accs.shift() : null;
-
-orders=orders.map(o=>{
-if(o.id===id){
-o.status="thành công";
-o.acc=acc;
-}
-return o;
-});
-
-localStorage.setItem("orders",JSON.stringify(orders));
-
-renderOrders();
-}
-
-/* SEARCH FIX (PRODUCT + ORDER ID) */
 function render(){
+  let v=document.getElementById("search").value.toLowerCase();
+  let list=document.getElementById("list");
+  list.innerHTML="";
 
-let k=searchInput.value?.toLowerCase()||"";
+  let f=data.filter(x =>
+    x.title.toLowerCase().includes(v) ||
+    x.code.toLowerCase().includes(v)
+  );
 
-/* reset shop */
-shop.innerHTML="";
+  let start=(page-1)*perPage;
+  let end=start+perPage;
 
-/* FILTER PRODUCTS */
-products
-.filter(p=>p.name.toLowerCase().includes(k))
-.forEach(p=>{
-shop.innerHTML+=`
-<div class="card">
-<img src="${p.img}">
-<div class="info">
-${p.name}<br>${p.price}
-<div class="buy" onclick="buy('${p.name}',${p.price})">Mua</div>
-</div>
-</div>`;
-});
+  f.slice(start,end).forEach(x=>{
+    list.innerHTML+=`
+      <div class="card">
+        <div class="tag">${x.code}</div>
+        <img src="${x.img}">
+        <div class="info">
+          <b>${x.title}</b><br>
+          <div class="price">${x.price}</div>
+          <div class="note">${x.note}</div>
+        </div>
+        <div class="btn">
+          <button class="detailBtn" onclick="openDetail('${x.title}','${x.price}','${x.code}','${x.note}','${x.img}')">Chi tiết</button>
+          <button class="buyBtn" onclick="openBuy()">Mua</button>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("pageNum").innerText=page;
 }
 
-/* ORDERS FIX + SEARCH ID */
-function renderOrders(){
+function nextPage(){page++;render();}
+function prevPage(){if(page>1){page--;render();}}
 
-if(!cur){
-ordersDiv.innerHTML="<h3 style='padding:10px'>Vui lòng đăng nhập</h3>";
-return;
+function openDetail(t,p,c,n,i){
+  popup.style.display="flex";
+  document.getElementById("pimg").src=i;
+  document.getElementById("title").innerText=t;
+  document.getElementById("price").innerText=p;
+  document.getElementById("code").innerText=c;
+  document.getElementById("note").innerText=n;
 }
 
-let k=searchInput.value?.toLowerCase()||"";
-
-ordersDiv.innerHTML="<h3 style='padding:10px'>📦 ĐƠN HÀNG</h3>";
-
-orders
-.filter(o=>o.user===cur)
-.filter(o=>o.id.toLowerCase().includes(k))
-.forEach(o=>{
-ordersDiv.innerHTML+=`
-<div class="order">
-<b>${o.id}</b><br>
-${o.name}<br>
-Trạng thái: ${o.status}
-
-${o.acc?`
-<div class="acc">
-<b>ACC:</b><br>
-${o.acc.u}<br>
-${o.acc.p}<br>
-${o.acc.note}
-<img src="${o.acc.img}">
-</div>`:""}
-</div>`;
-});
+function openBuy(){
+  document.getElementById("buyPopup").style.display="flex";
 }
 
-/* MENU */
-function toggle(){
-menu.style.left=(menu.style.left==="0px")?"-240px":"0px";
-}
+/* SNOW */
+setInterval(()=>{
+  let s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),10000);
+},200);
 
-function show(x){
-shop.style.display=x==="shop"?"grid":"none";
-ordersDiv.style.display=x==="orders"?"block":"none";
-}
-
-/* SUPPORT */
-document.getElementById("support").onclick=()=>{
-window.open("https://m.me/your_fb","_blank");
-}
+render();
 
 </script>
 
