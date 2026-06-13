@@ -471,7 +471,7 @@ footer {
 </div>
 
 <!-- HEADER -->
-<header>🏴‍☠️ TRUMACC BLOX FRUITS 🏴‍☠️</header>
+<header> TRUMACC BLOX FRUITS </header>
 
 <div class="run">
   <span>🔥 CHUYÊN ACC BLOX FRUITS - HỆ THỐNG GIAO DỊCH TỰ ĐỘNG CYBER V2 - ĐẢM BẢO UY TÍN TUYỆT ĐỐI KHÔNG LO BAN ACC 🔥</span>
