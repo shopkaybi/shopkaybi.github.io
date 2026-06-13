@@ -599,12 +599,6 @@ footer {
 <script>
 // KHO TÀI KHOẢN BLOX FRUITS
 let data=[
-  { id: 1, category: "VIP", rawPrice: 150000, title: "🦊 ACC BLOX FRUITS MAX LEVEL + TRÁI KITSUNE SẴN", price: "150K", oldPrice: "300K", note: "Level 2550 (Max), Đã ăn sẵn trái Kitsune bá đạo, sở hữu nhiều kiếm huyền thoại.", img: "https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg" },
-  { id: 2, category: "MAXLV", rawPrice: 250000, title: "⚔️ ACC BLOX FRUITS SONG KIẾM CDK + SOUL GUITAR", price: "250K", oldPrice: "500K", note: "Max cấp, sở hữu song kiếm Cursed Dual Katana, rương đồ cực nhiều nguyên liệu up tộc.", img: "https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg" },
-  { id: 3, category: "VIP", rawPrice: 350000, title: "💎 SIÊU ACC BLOX FRUITS LEOPARD + GODHUMAN VIP", price: "350K", oldPrice: "700K", note: "Acc PvP đỉnh cao, có võ Godhuman max master, trang phục cực chất, trắng thông tin.", img: "https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg" },
-  { id: 4, category: "GIARE", rawPrice: 50000, title: "🔥 ACC BLOX FRUITS LEVEL 1500+ GIÁ HỌC SINH", price: "50K", oldPrice: "100K", note: "Thích hợp cho anh em tập chơi, đã qua Sea 3 cày cuốc thoải mái, giá siêu hạt dẻ.", img: "https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg" },
-  { id: 5, category: "MAXLV", rawPrice: 200000, title: "👑 ACC BLOX FRUITS DOUGH V2 AWAKENED KHỦNG", price: "200K", oldPrice: "400K", note: "Max level 2550, thức tỉnh hoàn toàn trái bột bánh mì Dough V2 siêu mạnh mẽ.", img: "https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg" },
-  { id: 6, category: "VIP", rawPrice: 600000, title: "👑 SIÊU PHẨM BLOX FRUIT ĐẲNG CẤP 30M BOUNTY", price: "600K", oldPrice: "1200K", note: "Nick cực hiếm, 30 Triệu Bounty danh giá, kho trái ác quỷ đầy đủ mythic vĩnh viễn.", img: "https://sf-static.upanhlaylink.com/img/image_202606132be31ee49ca1c70199a94b9d93128d70.jpg" }
 ];
 
 // DATA QUÉT HOÀN TOÀN TỪ ẢNH BẢNG GIÁ 1000054928.png
